@@ -1,0 +1,37 @@
+{
+  "name": "AP CSP Python",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "pip install pygame-ce pygbag",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": { "label": "game" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "github.copilot.enable": { "*": false },
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.analysis.extraPaths": [
+          "/home/vscode/.local/lib/python3.12/site-packages"
+        ],
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.formatOnSave": true,
+          "editor.rulers": [88],
+          "editor.insertSpaces": true,
+          "editor.tabSize": 4,
+          "editor.detectIndentation": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+gh codespace ports visibility 8000:public -c "$CODESPACE_NAME" || \
+  echo "Could not set port 8000 public — do it by hand in the 'Ports' tab."
+pygbag --build "$1"
+cd "$1/build/web"
+python -m http.server 8000
