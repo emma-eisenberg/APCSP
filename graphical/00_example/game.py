@@ -29,3 +29,4 @@ def on_key_down(state: State, key):
 def draw(screen: pygame.Surface, state: State):
     screen.fill(("black"))
     pygame.draw.circle(screen, ("pink"), (state.x, 240), RADIUS)
+
