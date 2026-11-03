@@ -4,29 +4,34 @@ from dataclasses import dataclass
 
 import pygame
 
-app_size = (640, 480)
+import canvas
 
-STEP = 30
-RADIUS = 20
+app_size = (600, 600)
 
 
 @dataclass
 class State:
-    x: float = 320
+    x: float = 300
+    y: float = 300
 
 
 def setup():
     return State()
 
+def on_mouse_down(state: State, pos, button):
+    x,y = pos
+    state.x = x
+    state.y = y
 
-def on_key_down(state: State, key):
-    if key == pygame.K_LEFT:
-        state.x -= STEP
-    if key == pygame.K_RIGHT:
-        state.x += STEP
 
+def light(screen: pygame.Surface):
+    canvas.rect(screen, "black", (-25,-125,50,150))
+    canvas.circle(screen, "green", (0,0),15)
+    canvas.circle(screen, "yellow", (0,-50),15)
+    canvas.circle(screen, "red", (0,-100),15)
 
 def draw(screen: pygame.Surface, state: State):
-    screen.fill(("black"))
-    pygame.draw.circle(screen, ("pink"), (state.x, 240), RADIUS)
-
+    screen.fill("white")
+    canvas.push_transform(state.x, state.y)
+    light(screen)
+    canvas.pop_transform()
